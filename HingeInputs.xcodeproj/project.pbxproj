@@ -15,6 +15,11 @@
 		BCF2E595266FE09400728099 /* ListInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF2E594266FE09400728099 /* ListInputView.swift */; };
 		BCF2E598266FE2F300728099 /* Pronoun.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF2E597266FE2F300728099 /* Pronoun.swift */; };
 		BCF2E59B266FE91000728099 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF2E59A266FE91000728099 /* SceneDelegate.swift */; };
+		C1AB9E2728635F2B004D16D2 /* UIView+Constrants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AB9E2628635F2B004D16D2 /* UIView+Constrants.swift */; };
+		C1AB9E2E286361DC004D16D2 /* ListInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AB9E2D286361DC004D16D2 /* ListInputViewModel.swift */; };
+		C1AB9E3028636597004D16D2 /* ListInputCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AB9E2F28636597004D16D2 /* ListInputCollectionViewCell.swift */; };
+		C1AB9E32286365B9004D16D2 /* ListInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AB9E31286365B9004D16D2 /* ListInputTableViewCell.swift */; };
+		C1AB9E342863E656004D16D2 /* UIColor+Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AB9E332863E656004D16D2 /* UIColor+Palette.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +33,11 @@
 		BCF2E594266FE09400728099 /* ListInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListInputView.swift; sourceTree = "<group>"; };
 		BCF2E597266FE2F300728099 /* Pronoun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pronoun.swift; sourceTree = "<group>"; };
 		BCF2E59A266FE91000728099 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		C1AB9E2628635F2B004D16D2 /* UIView+Constrants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constrants.swift"; sourceTree = "<group>"; };
+		C1AB9E2D286361DC004D16D2 /* ListInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListInputViewModel.swift; sourceTree = "<group>"; };
+		C1AB9E2F28636597004D16D2 /* ListInputCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListInputCollectionViewCell.swift; sourceTree = "<group>"; };
+		C1AB9E31286365B9004D16D2 /* ListInputTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListInputTableViewCell.swift; sourceTree = "<group>"; };
+		C1AB9E332863E656004D16D2 /* UIColor+Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Palette.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,17 +70,54 @@
 		BCF2E57E266FE06900728099 /* HingeInputs */ = {
 			isa = PBXGroup;
 			children = (
+				C1AB9E2A2863617D004D16D2 /* Models */,
+				C1AB9E2B2863618E004D16D2 /* Views */,
+				C1AB9E2C28636196004D16D2 /* ViewModels */,
+				C1AB9E2528635F00004D16D2 /* Extensions */,
 				BCF2E57F266FE06900728099 /* AppDelegate.swift */,
 				BCF2E59A266FE91000728099 /* SceneDelegate.swift */,
-				BCF2E583266FE06900728099 /* ViewController.swift */,
-				BCF2E594266FE09400728099 /* ListInputView.swift */,
-				BCF2E597266FE2F300728099 /* Pronoun.swift */,
 				BCF2E585266FE06900728099 /* Main.storyboard */,
 				BCF2E588266FE07000728099 /* Assets.xcassets */,
 				BCF2E58A266FE07000728099 /* LaunchScreen.storyboard */,
 				BCF2E58D266FE07000728099 /* Info.plist */,
 			);
 			path = HingeInputs;
+			sourceTree = "<group>";
+		};
+		C1AB9E2528635F00004D16D2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C1AB9E2628635F2B004D16D2 /* UIView+Constrants.swift */,
+				C1AB9E332863E656004D16D2 /* UIColor+Palette.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C1AB9E2A2863617D004D16D2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BCF2E597266FE2F300728099 /* Pronoun.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C1AB9E2B2863618E004D16D2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BCF2E583266FE06900728099 /* ViewController.swift */,
+				BCF2E594266FE09400728099 /* ListInputView.swift */,
+				C1AB9E2F28636597004D16D2 /* ListInputCollectionViewCell.swift */,
+				C1AB9E31286365B9004D16D2 /* ListInputTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C1AB9E2C28636196004D16D2 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				C1AB9E2D286361DC004D16D2 /* ListInputViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,11 +190,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1AB9E32286365B9004D16D2 /* ListInputTableViewCell.swift in Sources */,
 				BCF2E59B266FE91000728099 /* SceneDelegate.swift in Sources */,
+				C1AB9E2728635F2B004D16D2 /* UIView+Constrants.swift in Sources */,
 				BCF2E584266FE06900728099 /* ViewController.swift in Sources */,
 				BCF2E598266FE2F300728099 /* Pronoun.swift in Sources */,
 				BCF2E580266FE06900728099 /* AppDelegate.swift in Sources */,
+				C1AB9E3028636597004D16D2 /* ListInputCollectionViewCell.swift in Sources */,
+				C1AB9E2E286361DC004D16D2 /* ListInputViewModel.swift in Sources */,
 				BCF2E595266FE09400728099 /* ListInputView.swift in Sources */,
+				C1AB9E342863E656004D16D2 /* UIColor+Palette.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
