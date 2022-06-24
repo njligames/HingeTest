@@ -5,7 +5,7 @@
 
 import UIKit
 
-final class ListInputView: UIView, ConfigurableListInputView {
+final class ListInputView: UIView, ListInputViewConfigurator {
     private var interactor: ListInputViewProviding?
 
     private var selectedItemsCollectionView: UICollectionView = {
@@ -54,7 +54,7 @@ final class ListInputView: UIView, ConfigurableListInputView {
         stackView.axis = .vertical
         stackView.spacing = 12
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.backgroundColor = .backgroundColor
+        stackView.backgroundColor = .clear
         addSubview(stackView)
         stackView.addArrangedSubview(selectedItemsCollectionView)
         stackView.addArrangedSubview(listedItemsTableView)
@@ -90,7 +90,7 @@ extension ListInputView: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return interactor?.selectedPronouns.count ?? 0
+        return interactor?.selectedItems.count ?? 0
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -98,13 +98,13 @@ extension ListInputView: UICollectionViewDataSource {
 
         guard let interactor = interactor,
               let listCell = cell as? ListInputCollectionViewCell,
-              indexPath.row < interactor.selectedPronouns.count
+              indexPath.row < interactor.selectedItems.count
         else {
             return cell
         }
 
-        let pronoun = interactor.selectedPronouns[indexPath.row]
-        listCell.label.text = pronoun.title
+        let item = interactor.selectedItems[indexPath.row]
+        listCell.label.text = item.title
         return listCell
     }
 }
@@ -114,12 +114,12 @@ extension ListInputView: UICollectionViewDataSource {
 extension ListInputView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let interactor = interactor,
-              indexPath.row < interactor.selectedPronouns.count
+              indexPath.row < interactor.selectedItems.count
         else {
             return
         }
 
-        interactor.onItemDeselected(interactor.selectedPronouns[indexPath.row]) { [weak self] in
+        interactor.onItemDeselected(interactor.selectedItems[indexPath.row]) { [weak self] in
             self?.selectedItemsCollectionView.reloadData()
             self?.listedItemsTableView.reloadData()
         }
@@ -131,22 +131,22 @@ extension ListInputView: UICollectionViewDelegate {
 extension ListInputView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return interactor?.pronouns.count ?? 0
+        return interactor?.items.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ListInputTableViewCell.reuseIdentifier, for: indexPath)
 
         guard let interactor = interactor,
-              indexPath.row < interactor.pronouns.count,
+              indexPath.row < interactor.items.count,
               let listCell = cell as? ListInputTableViewCell
         else {
             return cell
         }
 
-        let pronoun = interactor.pronouns[indexPath.row]
-        listCell.textLabel?.text = pronoun.title
-        listCell.isOptionSelected = interactor.selectedPronouns.contains(pronoun)
+        let item = interactor.items[indexPath.row]
+        listCell.textLabel?.text = item.title
+        listCell.isOptionSelected = interactor.selectedItems.contains(item)
         return listCell
     }
 }
@@ -157,7 +157,7 @@ extension ListInputView: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let interactor = interactor,
-              indexPath.row < interactor.pronouns.count
+              indexPath.row < interactor.items.count
         else {
             return
         }
@@ -165,13 +165,13 @@ extension ListInputView: UITableViewDelegate {
         guard let listCell = tableView.cellForRow(at: indexPath) as? ListInputTableViewCell else { return }
 
         guard !listCell.isOptionSelected else {
-            interactor.onItemDeselected(interactor.pronouns[indexPath.row]) { [weak self] in
+            interactor.onItemDeselected(interactor.items[indexPath.row]) { [weak self] in
                 self?.reloadData()
             }
             return
         }
 
-        interactor.onItemSelected(interactor.pronouns[indexPath.row]) { [weak self] in
+        interactor.onItemSelected(interactor.items[indexPath.row]) { [weak self] in
             self?.reloadData()
         }
     }

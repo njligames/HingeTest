@@ -7,34 +7,36 @@
 
 import UIKit
 
+typealias ItemType = Pronoun
+
 protocol ListInputViewProviding: AnyObject {
-    var pronouns: [Pronoun] { get }
-    var selectedPronouns: [Pronoun] { get }
-    func onItemSelected(_ pronoun: Pronoun, onCompletion: (() -> Void)?)
-    func onItemDeselected(_ pronoun: Pronoun, onCompletion: (() -> Void)?)
+    var items: [ItemType] { get }
+    var selectedItems: [ItemType] { get }
+    func onItemSelected(_ item: ItemType, onCompletion: (() -> Void)?)
+    func onItemDeselected(_ item: ItemType, onCompletion: (() -> Void)?)
 }
 
-protocol ConfigurableListInputView: UIView {
+protocol ListInputViewConfigurator: UIView {
     func setConfiguration(interactor: ListInputViewProviding)
 }
 
 final class ListInputViewModel: ListInputViewProviding {
-    var pronouns: [Pronoun]
-    var selectedPronouns: [Pronoun]
+    var items: [ItemType]
+    var selectedItems: [ItemType]
     
-    init(with pronouns: [Pronoun] = Pronoun.testGroup1) {
-        self.pronouns = pronouns
-        selectedPronouns = []
+    init(with items: [ItemType] = ItemType.testGroup1) {
+        self.items = items
+        selectedItems = []
     }
     
-    func onItemSelected(_ pronoun: Pronoun, onCompletion: (() -> Void)? = nil) {
-        guard !selectedPronouns.contains(pronoun) else { return }
-        selectedPronouns.append(pronoun)
+    func onItemSelected(_ item: ItemType, onCompletion: (() -> Void)? = nil) {
+        guard !selectedItems.contains(item) else { return }
+        selectedItems.append(item)
         onCompletion?()
     }
     
-    func onItemDeselected(_ pronoun: Pronoun, onCompletion: (() -> Void)? = nil) {
-        selectedPronouns.removeAll { $0 == pronoun }
+    func onItemDeselected(_ item: ItemType, onCompletion: (() -> Void)? = nil) {
+        selectedItems.removeAll { $0 == item }
         onCompletion?()
     }
 }

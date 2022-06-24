@@ -7,7 +7,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    private let myInputView: ConfigurableListInputView = {
+    private let myInputView: ListInputViewConfigurator = {
         let view = ListInputView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .backgroundColor
